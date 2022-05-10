@@ -17,6 +17,8 @@ public class PhoneApp {
 		
 		Reader fr = new FileReader("./PhoneDB.txt");
 		BufferedReader br = new BufferedReader(fr);
+		Writer fw = null;
+		BufferedWriter bw = null;
 		
 		
 		
@@ -50,7 +52,7 @@ public class PhoneApp {
 			
 			switch(num) {
 				case 1: //전체 리스트 출력
-					
+					System.out.println("<1.리스트>");
 					int i = 1;
 					for(Phone p : pList) {
 						System.out.println(i+".   "+p.showPhone());
@@ -61,6 +63,7 @@ public class PhoneApp {
 					
 					
 				case 2: //리스트에 등록
+					System.out.println("<2.등록>");
 					sc.nextLine();
 					System.out.print(">이름: ");
 					String name = sc.nextLine();
@@ -70,14 +73,10 @@ public class PhoneApp {
 					String company = sc.nextLine();
 					
 					pList.add(new Phone(name,hp,company)); //pList에 추가
-					
-					for(Phone p : pList) {
-						System.out.println(p.showPhone());
-					}
-					
+
 					//PhoneDB에 추가
-					Writer fw = new FileWriter("./PhoneDB.txt");
-					BufferedWriter bw = new BufferedWriter(fw);
+					fw = new FileWriter("./PhoneDB.txt");
+					bw = new BufferedWriter(fw);
 					
 					for(Phone p : pList) {
 						
@@ -92,6 +91,25 @@ public class PhoneApp {
 					
 					
 				case 3: //리스트에서 삭제
+					System.out.println("<3.삭제>");
+					System.out.print(">번호: ");
+					int d_num = sc.nextInt();
+					
+					pList.remove(d_num-1);
+					
+					//PhoneDB에 추가
+					fw = new FileWriter("./PhoneDB.txt");
+					bw = new BufferedWriter(fw);
+					
+					for(Phone p : pList) {
+						
+						String str = p.getName()+","+p.getHp()+","+p.getCompany();
+						bw.write(str);
+						bw.newLine();//줄바꿈
+						
+					}
+					bw.close();
+					
 					break;
 					
 					
