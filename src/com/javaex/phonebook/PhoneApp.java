@@ -114,6 +114,19 @@ public class PhoneApp {
 					
 					
 				case 4: //리스트에서 검색
+					sc.nextLine();
+					System.out.println("<4.검색>");
+					System.out.print(">이름: ");
+					String keyword = sc.nextLine();
+					
+					int j=1;
+					for(Phone p : pList) {
+						if(p.getName().matches("(.*)"+keyword+"(.*)")) {
+							System.out.println(j+".   "+p.showPhone());
+						}
+						j++;
+					}
+					
 					break;
 					
 					
