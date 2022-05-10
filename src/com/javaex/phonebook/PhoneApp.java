@@ -17,8 +17,7 @@ public class PhoneApp {
 		
 		Reader fr = new FileReader("./PhoneDB.txt");
 		BufferedReader br = new BufferedReader(fr);
-		Writer fw = new FileWriter("./PhoneDB-copy.txt");
-		BufferedWriter bw = new BufferedWriter(fw);
+		
 		
 		
 		Scanner sc = new Scanner(System.in);
@@ -26,23 +25,23 @@ public class PhoneApp {
 		List<Phone> pList = new ArrayList<Phone>();
 		
 		
+		//PhoneDB를 읽어와서 List에 입력
+		while(true) {
+			String readDb = br.readLine();
+			if(readDb == null) {
+				break;
+			}
+			String[] sp = readDb.split(",");
+			pList.add(new Phone(sp[0],sp[1],sp[2]));
+		}
+		
 		System.out.println("**********************************************");
 		System.out.println("*           전화번호 관리 프로그램           *");
 		System.out.println("**********************************************");
+
 		
 		while(flag) {
-			
-			//PhoneDB를 읽어와서 List에 입력
-			
-			while(true) {
-				String readDb = br.readLine();
-				if(readDb == null) {
-					break;
-				}
-				String[] sp = readDb.split(",");
-				pList.add(new Phone(sp[0],sp[1],sp[2]));
-			}
-			
+
 			System.out.println();
 			System.out.println("1.리스트   2.등록   3.삭제   4.검색   5.종료");
 			System.out.println("----------------------------------------------");
@@ -72,13 +71,17 @@ public class PhoneApp {
 					
 					pList.add(new Phone(name,hp,company)); //pList에 추가
 					
+					for(Phone p : pList) {
+						System.out.println(p.showPhone());
+					}
+					
 					//PhoneDB에 추가
+					Writer fw = new FileWriter("./PhoneDB.txt");
+					BufferedWriter bw = new BufferedWriter(fw);
+					
 					for(Phone p : pList) {
 						
 						String str = p.getName()+","+p.getHp()+","+p.getCompany();
-						System.out.println("이름: " + p.getName());
-						System.out.println("핸드폰: " + p.getHp());
-						System.out.println("회사: " + p.getCompany());
 						bw.write(str);
 						bw.newLine();//줄바꿈
 						
