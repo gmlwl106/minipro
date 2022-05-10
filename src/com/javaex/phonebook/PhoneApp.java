@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PhoneApp {
@@ -15,6 +17,15 @@ public class PhoneApp {
 		
 		Scanner sc = new Scanner(System.in);
 		
+		List<Phone> pList = new ArrayList<Phone>();
+		while(true) {
+			String readDb = br.readLine();
+			if(readDb == null) {
+				break;
+			}
+			String[] sp = readDb.split(",");
+			pList.add(new Phone(sp[0],sp[1],sp[2]));
+		}
 		
 		System.out.println("**********************************************");
 		System.out.println("*           전화번호 관리 프로그램           *");
@@ -29,6 +40,14 @@ public class PhoneApp {
 		
 		switch(num) {
 			case 1: //전체 리스트 출력
+				int i = 1;
+				for(Phone p : pList) {
+					System.out.println(i+".   "+p.showPhone());
+					i++;
+				}
+				
+				
+				
 				
 				break;
 				
