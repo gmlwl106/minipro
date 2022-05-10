@@ -25,6 +25,7 @@ public class PhoneApp {
 		Scanner sc = new Scanner(System.in);
 		boolean flag = true;
 		List<Phone> pList = new ArrayList<Phone>();
+		int listNum;
 		
 		
 		//PhoneDB를 읽어와서 List에 입력
@@ -53,10 +54,10 @@ public class PhoneApp {
 			switch(num) {
 				case 1: //전체 리스트 출력
 					System.out.println("<1.리스트>");
-					int i = 1;
+					listNum = 1;
 					for(Phone p : pList) {
-						System.out.println(i+".   "+p.showPhone());
-						i++;
+						System.out.println(listNum+".   "+p.showPhone());
+						listNum++;
 					}
 					
 					break;
@@ -119,12 +120,12 @@ public class PhoneApp {
 					System.out.print(">이름: ");
 					String keyword = sc.nextLine();
 					
-					int j=1;
+					listNum = 1;
 					for(Phone p : pList) {
 						if(p.getName().matches("(.*)"+keyword+"(.*)")) {
-							System.out.println(j+".   "+p.showPhone());
+							System.out.println(listNum+".   "+p.showPhone());
 						}
-						j++;
+						listNum++;
 					}
 					
 					break;
