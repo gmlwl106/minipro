@@ -79,12 +79,11 @@ public class PhoneApp {
 					fw = new FileWriter("./PhoneDB.txt");
 					bw = new BufferedWriter(fw);
 					
+					//DB파일에 pList 덮어씌우기
 					for(Phone p : pList) {
-						
 						String str = p.getName()+","+p.getHp()+","+p.getCompany();
 						bw.write(str);
 						bw.newLine();//줄바꿈
-						
 					}
 					bw.close();
 					System.out.println("[등록되었습니다.]");
@@ -102,12 +101,11 @@ public class PhoneApp {
 					fw = new FileWriter("./PhoneDB.txt");
 					bw = new BufferedWriter(fw);
 					
+					//DB파일에 pList 덮어씌우기
 					for(Phone p : pList) {
-						
 						String str = p.getName()+","+p.getHp()+","+p.getCompany();
 						bw.write(str);
 						bw.newLine();//줄바꿈
-						
 					}
 					bw.close();
 					
@@ -122,7 +120,7 @@ public class PhoneApp {
 					
 					listNum = 1;
 					for(Phone p : pList) {
-						if(p.getName().matches("(.*)"+keyword+"(.*)")) {
+						if(p.getName().contains(keyword)) {
 							System.out.println(listNum+".   "+p.showPhone());
 						}
 						listNum++;
