@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PhoneRepository {
 	
-	List<Phone> pList;
+	private List<Phone> pList;
 	
 
 	//생성자
@@ -29,7 +29,6 @@ public class PhoneRepository {
 
 	//메소드 일반
 	
-
 	//파일 읽어와서 pList에 저장
 	public void loadList() {
 		try {
@@ -60,7 +59,8 @@ public class PhoneRepository {
 	
 	
 	//pList에서 정보 삭제
-	public void delInfo() {
+	public void delInfo(int num) {
+		pList.remove(num-1);
 		saveList(pList);
 	}
 	
